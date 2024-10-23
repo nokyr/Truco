@@ -6,7 +6,7 @@
 <p>
 
 <p>Os naipes do jogo também tem força no jogo, sendo o mais forte o paus e o mais fraco o ouros.</p>
-<img width="300px" src="img/naipes.jpg">
+<img width="300px" src="img/naipes.png">
 
 <p>As manilhas são as cartas mais fortes do jogo. As cartas mais fortes sempre começa de cima pra baixo, com a mais forte sendo 4 de paus e a mais fraca 7 de ouro.<p>
 <img width="300px" src="img/manilhas.png">
