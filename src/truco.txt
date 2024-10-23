@@ -1,0 +1,24 @@
+4567QJKA237A74
+
+1 4
+2 5
+3 6
+4 7
+5 Q
+6 J
+7 K
+8 A
+9 2
+10 3
+11 7
+12 A
+13 7
+14 4
+
+erro; pode ter duas pessoas com zap
+
+a maquina tambem deveria jogar a mais alta
+
+corrigido -> a segunda rodada ta lendo o valor literal, se voce digita 13 ele entende que sua carta é a carta 13
+
+fazer o readme pro github
