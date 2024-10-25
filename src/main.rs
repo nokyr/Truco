@@ -15,7 +15,10 @@ fn convert_to_int(data_input: &String) -> i32 {
 fn main() {
 
     let mut jrodada = 0;
-    let mut mrodada = 0; 
+    let mut mrodada = 0;
+    let mut rpj = 0; //rpj = Rodada Pontos Jogador
+    let mut rpm = 0; //rpm = Rodada Pontos Máquina
+
 
     // Cria um gerador de números aleatórios
     let mut rng = rand::thread_rng();
@@ -90,13 +93,17 @@ fn main() {
 
     if convert_to_int(&jjogada1) > mjogada1{
         ganhador1 += 1;
+        rpj += 1;
 
     }
     else if convert_to_int(&jjogada1) == mjogada1{
         ganhador1 += 3;
+        rpj += 1;
+        rpm += 1;
     }
     else {
-        ganhador1 += 2;   
+        ganhador1 += 2;
+        rpm += 1;   
     }
 
     if ganhador1 == 1{
@@ -115,6 +122,9 @@ fn main() {
     }    
     
     //rodada 2
+
+    let mut ucj = 0; //ucj = Última Carta Jogador
+
     
     /*jogador*/
     let mut jjogada2 = String::new();
@@ -132,12 +142,14 @@ fn main() {
         //let let jescolha2 = jjogada2.clone();
         
         if convert_to_int(&jjogada2) == 1{
-            ccarta2 = jcarta2.to_string(); 
+            ccarta2 = jcarta2.to_string();
+            ucj += jcarta3.clone(); 
             jjogada2 = ccarta2.clone();
         }
 
         if convert_to_int(&jjogada2) == 2{
             ccarta2 = jcarta3.to_string(); 
+            ucj += jcarta2.clone();
             jjogada2 = ccarta2.clone();
         }
     }
@@ -154,12 +166,14 @@ fn main() {
         //let jescolha2 = jjogada2.clone(); inativo
         
         if convert_to_int(&jjogada2) == 1{
-            ccarta2 = jcarta1.to_string(); 
+            ccarta2 = jcarta1.to_string();
+            ucj += jcarta3.clone(); 
             jjogada2 = ccarta2.clone();
         }
         
         if convert_to_int(&jjogada2) == 2{
-            ccarta2 = jcarta3.to_string(); 
+            ccarta2 = jcarta3.to_string();
+            ucj += jcarta1.clone(); 
             jjogada2 = ccarta2.clone();
         }
     }
@@ -174,12 +188,14 @@ fn main() {
         //let jescolha2 = jjogada2.clone();
         
         if convert_to_int(&jjogada2) == 1{
-            ccarta2 = jcarta1.to_string(); 
+            ccarta2 = jcarta1.to_string();
+            ucj += jcarta2.clone(); 
             jjogada2 = ccarta2.clone();
         }
 
         if convert_to_int(&jjogada2) == 2{
-            ccarta2 = jcarta2.to_string(); 
+            ccarta2 = jcarta2.to_string();
+            ucj += jcarta1.clone(); 
             jjogada2 = ccarta2.clone();
         }
 
@@ -188,17 +204,51 @@ fn main() {
 
     /*maquina*/
     //println!("{}",&ccarta2);
+    let mut ucm = 0; //ucm = Úĺtima Carta Máquina
     let mut mjogada2 = 0;
     if mescolha1 == 1{
         mjogada2 = rng.gen_range(2..=3);
+
+        if mjogada2 == 2{
+            mjogada2 = mcarta2;
+            ucm = mcarta3;
+        }
+
+        if mjogada2 == 3{
+            mjogada2 = mcarta3;
+            ucm = mcarta2;
+        }
     }
 
     if mescolha1 == 2{
        mjogada2 = if rng.gen_bool(0.5) { 1 } else { 3 }; // Gera 1 ou 3 
+
+        if mjogada2 == 1{
+            mjogada2 = mcarta1;
+            ucm = mcarta3;
+        }
+
+        if mjogada2 == 3{
+            mjogada2 = mcarta3;
+            ucm = mcarta1;
+        }
+
     }
 
     if mescolha1 == 3{
         mjogada2 = rng.gen_range(1..=2);
+
+        if mjogada2 == 1{
+            mjogada2 = mcarta1;
+            ucm = mcarta2;
+
+
+        }
+
+        if mjogada2 == 2{
+            mjogada2 = mcarta2;
+            ucm = mcarta1;
+        }
     }
 
     //Ganhador Segunda Rodada
@@ -206,13 +256,17 @@ fn main() {
 
     if convert_to_int(&jjogada2) > mjogada2{
         ganhador2 += 1;
+        rpj += 1;
 
     }
     else if convert_to_int(&jjogada2) == mjogada2{
         ganhador2 += 3;
+        rpj += 1;
+        rpm += 1;
     }
     else {
-        ganhador2 += 2;   
+        ganhador2 += 2;
+        rpm += 1;   
     }
 
     if ganhador2 == 1{
@@ -230,10 +284,58 @@ fn main() {
         mrodada += 1;
     }
 
+    //rodada 3
+
+    /*jogador*/
+    let mut ganhador3 = 0;
+
+    let mut jjogada3 = String::new();
+    println!("Sua última carta é: {}", ucj);
+    
+    println!("Digite 1 para jogar!");
+    io::stdin().read_line(&mut jjogada3).expect("ERRO ao ler");
+
+    if convert_to_int(&jjogada3) == 1{
+        jjogada3 == ucj.to_string();
+    }
    
+    /*maquina*/
+    let mut mjogada3 = ucm;
 
-    
+    /*Ganhador rodada 3*/
+
+    if convert_to_int(&jjogada3) > mjogada3{
+        ganhador3 += 1;
+        rpj += 1;
+    }
+    else if convert_to_int(&jjogada3) == mjogada3{
+        ganhador3 += 3;
+        rpj += 1;
+        rpm += 1;
+    }
+    else{
+        ganhador3 += 2;
+        rpm += 1;
+    }
+
+    if ganhador3 == 1{
+        println!("Você ganhou!");
+        jrodada += 1;
+    }
+
+    else if ganhador3 == 3{
+        println!("Empate!");
+        jrodada += 1;
+        mrodada += 1;
+    }
+    else {
+        println!("A máquina ganhou!");
+        mrodada += 1;
+    }
+
     println!("você ganhou {} rodadas, a maquina ganhou {} rodadas, mao {}", jrodada, mrodada, jescolha1);
-    
 
+    //fim da rodada
+    
 }
+
