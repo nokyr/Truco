@@ -1,6 +1,7 @@
-
 use rand::Rng;
 use std::io;
+use rand::seq::SliceRandom; // Importa o trait para usar o método choose
+use rand::thread_rng; // Para obter um gerador de números aleatórios
 
 fn convert_to_int(data_input: &String) -> i32 {
     match data_input.trim().parse::<i32>() {
@@ -11,6 +12,9 @@ fn convert_to_int(data_input: &String) -> i32 {
         }
     }
 }
+
+static mut pontos_jogador: i32 = 0;
+static mut pontos_maquina: i32 = 0;
 
 fn main() {
 
@@ -30,13 +34,123 @@ fn main() {
     let jcarta1 = rng.gen_range(1..=14);
     let jcarta2 = rng.gen_range(1..=14);
     let jcarta3 = rng.gen_range(1..=14);
+    /*<Sistema para mostrar as cartas / para converter número para carta, tipo 1 para 4 de ouro>*/
+    //naipes ♣♠♥♦
+
+    //carta1 jogador
+    let mut carta_jogador1 = String::new();
+    let mut jcarta1_off = String::new();
+
+    if jcarta1 == 1{
+        let naipes = vec!["♦", "♥", "♠"];
+        let mut rng = thread_rng();
+        let naipe = naipes.choose(&mut rng).unwrap(); // .unwrap() é usado aqui para lidar com a possibilidade de None
+        //escolhe 1 dos 3 naipes da carta
+
+        jcarta1_off = "4{}", naipe;
+        carta_jogador1 = jcarta1_off.to_string();
+    }
+    if jcarta1 == 2{
+        let naipes = vec!["♦", "♥", "♠", "♣"];
+        let mut rng = thread_rng();
+        let naipe = naipes.choose(&mut rng).unwrap();
+        
+
+        jcarta1_off = "5{}", naipe;
+        carta_jogador1 = jcarta1_off.to_string();
+    }
+    if jcarta1 == 3{
+        let naipes = vec!["♦", "♥", "♠", "♣"];
+        let mut rng = thread_rng();
+        let naipe = naipes.choose(&mut rng).unwrap(); 
+        jcarta1_off = "6{}", naipe;
+        carta_jogador1 = jcarta1_off.to_string();
+
+    }
+    if jcarta1 == 4{
+        let naipes = vec!["♠", "♣"];
+        let mut rng = thread_rng();
+        let naipe = naipes.choose(&mut rng).unwrap();
+        
+
+        jcarta1_off = "7{}", naipe;
+        carta_jogador1 = jcarta1_off.to_string();
+    }
+    if jcarta1 == 5{
+        let naipes = vec!["♦", "♥", "♠", "♣"];
+        let mut rng = thread_rng();
+        let naipe = naipes.choose(&mut rng).unwrap();
+
+        jcarta1_off = "Q{}", naipe;
+        carta_jogador1 = jcarta1_off.to_string();
+    }
+    if jcarta1 == 6{
+        let naipes = vec!["♦", "♥", "♠", "♣"];
+        let mut rng = thread_rng();
+        let naipe = naipes.choose(&mut rng).unwrap();
+
+        jcarta1_off = "J{}", naipe;
+        carta_jogador1 = jcarta1_off.to_string(); 
+    }
+    if jcarta1 == 7{
+        let naipes = vec!["♦", "♥", "♠", "♣"];
+        let mut rng = thread_rng();
+        let naipe = naipes.choose(&mut rng).unwrap();
+
+        jcarta1_off = "K{}", naipe;
+        carta_jogador1 = jcarta1_off.to_string();
+     }
+    if jcarta1 == 8{
+        let naipes = vec!["♦", "♥", "♣"];
+        let mut rng = thread_rng();
+        let naipe = naipes.choose(&mut rng).unwrap();
+
+        jcarta1_off = "A{}", naipe;
+        carta_jogador1 = jcarta1_off.to_string();
+    }
+    if jcarta1 == 9{
+        let naipes = vec!["♦", "♥", "♠", "♣"];
+        let mut rng = thread_rng();
+        let naipe = naipes.choose(&mut rng).unwrap();
+
+        jcarta1_off = "2{}", naipe;
+        carta_jogador1 = jcarta1_off.to_string();
+    }
+    if jcarta1 == 10{
+        let naipes = vec!["♦", "♥", "♠", "♣"];
+        let mut rng = thread_rng();
+        let naipe = naipes.choose(&mut rng).unwrap();
+
+        jcarta1_off = "3{}", naipe;
+        carta_jogador1 = jcarta1_off.to_string();
+    }
+    if jcarta1 == 11{
+        jcarta1_off = "7♦";
+        carta_jogador1 = jcarta1_off.to_string();
+    }
+    if jcarta1 == 12{
+        jcarta1_off = "A♠";
+        carta_jogador1 = jcarta1_off.to_string();
+    }
+    if jcarta1 == 13{
+        jcarta1_off = "7♥";
+        carta_jogador1 = jcarta1_off.to_string();
+    }
+    if jcarta1 == 14{
+        jcarta1_off = "4♣";
+        carta_jogador1 = jcarta1_off.to_string();
+    }
+
+
+
+    /*</>*/
 
     //Maquina
     let mcarta1 = rng.gen_range(1..=14);
     let mcarta2 = rng.gen_range(1..=14);
     let mcarta3 = rng.gen_range(1..=14);
 
-    println!("Sua mão é: {}, {}, e {}", jcarta1, jcarta2, jcarta3);
+    println!("Sua mão é: {}, {}, e {}", carta_jogador1, jcarta2, jcarta3);
     println!("A mão da máquina é: {}, {}, {}", mcarta1, mcarta2, mcarta3);
 
     let mut jjogada1 = String::new();
@@ -132,8 +246,11 @@ fn main() {
     //let numero_str = "123";new();
     //|| jescolha1 == 1
 
+    
     if convert_to_int(&jescolha1) == 1{
         println!("Sua mão é: {} e {}", jcarta2, jcarta3);
+
+
         
         
         println!("Qual carta quer jogar? 1 ou 2");
@@ -333,9 +450,29 @@ fn main() {
         mrodada += 1;
     }
 
-    println!("você ganhou {} rodadas, a maquina ganhou {} rodadas, mao {}", jrodada, mrodada, jescolha1);
+    println!("você ganhou rodadas {}, a maquina ganhou {}", jrodada, mrodada);
 
     //fim da rodada
-    
+
+    //coloca os pontos do jogador ou da máquina
+    unsafe {
+        if rpj > rpm{
+            pontos_jogador += 1;
+        }
+        else if rpj == rpm{
+            pontos_jogador += 1;
+            pontos_maquina += 1;
+        }
+        else{
+            pontos_maquina += 1;
+        }
+    }
+
+    unsafe {
+        println!("{} a {}", pontos_jogador, pontos_maquina);
+    }
+
 }
+
+
 
