@@ -15,15 +15,15 @@
 13 7
 14 4
 
-erro; pode ter duas pessoas com zap
+// erro; pode ter duas pessoas com zap
 
-a maquina tambem deveria jogar a mais alta
+//a maquina tambem deveria jogar a mais alta
 
  //a segunda rodada ta lendo o valor literal, se voce digita 13 ele entende que sua carta é a carta 13
 
 
 //fazer o readme pro github
 
-ao inves de mostrar os numeros mostrar as cartas que o numero representam
+//ao inves de mostrar os numeros mostrar as cartas que o numero representam
 
 

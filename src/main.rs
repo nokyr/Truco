@@ -31,18 +31,141 @@ fn main() {
     //
     //Jogador
 
-    let jcarta1 = rng.gen_range(1..=14);
-    let jcarta2 = rng.gen_range(1..=14);
-    let jcarta3 = rng.gen_range(1..=14);
+    let mut jcarta1 = rng.gen_range(1..=14);
+    let mut jcarta2 = rng.gen_range(1..=14);
+    let mut jcarta3 = rng.gen_range(1..=14);
+
 
     //Maquina
-    let mcarta1 = rng.gen_range(1..=14);
-    let mcarta2 = rng.gen_range(1..=14);
-    let mcarta3 = rng.gen_range(1..=14);
+    let mut mcarta1 = rng.gen_range(1..=14);
+    let mut mcarta2 = rng.gen_range(1..=14);
+    let mut mcarta3 = rng.gen_range(1..=14);
 
+    /*Sistema para não repetir as Manilhas*/
     
+    // 7♦
+    let mut sete_ouro = 0;
+
+    if jcarta1 == 11{
+        sete_ouro += 1;
+    }
+    if jcarta2 == 11{
+        sete_ouro += 1;
+    }
+    if jcarta3 == 11{
+        sete_ouro += 1;
+    }
+    if mcarta1 == 11{
+        sete_ouro += 1;
+    }
+    if mcarta2 == 11{
+        sete_ouro += 1;
+    }
+    if jcarta3 == 11{
+        sete_ouro += 1;
+    }
+
+    if sete_ouro > 1{
+    jcarta1 = rng.gen_range(1..=14);
+    jcarta2 = rng.gen_range(1..=14);
+    jcarta3 = rng.gen_range(1..=14);
+    mcarta1 = rng.gen_range(1..=14);
+    mcarta2 = rng.gen_range(1..=14);
+    mcarta3 = rng.gen_range(1..=14);
+    }
+    // A♠
+    let mut espadilha = 0;
+
+    if jcarta1 == 12{
+        espadilha += 1;
+    }
+    if jcarta2 == 12{
+        espadilha += 1;
+    }
+    if jcarta3 == 12{
+        espadilha += 1;
+    }
+    if mcarta1 == 12{
+        espadilha += 1;
+    }
+    if mcarta2 == 12{
+        espadilha += 1;
+    }
+    if jcarta3 == 12{
+        espadilha += 1;
+    }
+
+    if espadilha > 1{
+    jcarta1 = rng.gen_range(1..=14);
+    jcarta2 = rng.gen_range(1..=14);
+    jcarta3 = rng.gen_range(1..=14);
+    mcarta1 = rng.gen_range(1..=14);
+    mcarta2 = rng.gen_range(1..=14);
+    mcarta3 = rng.gen_range(1..=14);
+    }
+    // 7♥
+    let mut sete_copa = 0;
+
+    if jcarta1 == 13{
+        sete_copa += 1;
+    }
+    if jcarta2 == 13{
+        sete_copa += 1;
+    }
+    if jcarta3 == 13{
+        sete_copa += 1;
+    }
+    if mcarta1 == 13{
+        sete_copa += 1;
+    }
+    if mcarta2 == 13{
+        sete_copa += 1;
+    }
+    if jcarta3 == 13{
+        sete_copa += 1;
+    }
+
+    if sete_copa > 1{
+    jcarta1 = rng.gen_range(1..=14);
+    jcarta2 = rng.gen_range(1..=14);
+    jcarta3 = rng.gen_range(1..=14);
+    mcarta1 = rng.gen_range(1..=14);
+    mcarta2 = rng.gen_range(1..=14);
+    mcarta3 = rng.gen_range(1..=14);
+    }
+    // 4♣
+    let mut zap = 0;
+
+    if jcarta1 == 14{
+        zap += 1;
+    }
+    if jcarta2 == 14{
+        zap += 1;
+    }
+    if jcarta3 == 14{
+        zap += 1;
+    }
+    if mcarta1 == 14{
+        zap += 1;
+    }
+    if mcarta2 == 14{
+        zap += 1;
+    }
+    if jcarta3 == 14{
+        zap += 1;
+    }
+
+    if zap > 1{
+    jcarta1 = rng.gen_range(1..=14);
+    jcarta2 = rng.gen_range(1..=14);
+    jcarta3 = rng.gen_range(1..=14);
+    mcarta1 = rng.gen_range(1..=14);
+    mcarta2 = rng.gen_range(1..=14);
+    mcarta3 = rng.gen_range(1..=14);
+    }
+
     /*<Sistema para mostrar as cartas / para converter número para carta, tipo 1 para 4 de ouro>*/
-    //naipes ♣♠♥♦
+    //naipes ♠ ♥ ♦ ♣
 
     //carta1 jogador
     let mut carta_jogador1 = String::new();
@@ -668,11 +791,11 @@ fn main() {
         mcarta3_off = String::from("4♣");
         carta_maquina3 = mcarta3_off;
     }
+
     /*</>*/
 
-
     println!("Sua mão é: {}, {}, e {}", carta_jogador1, carta_jogador2, carta_jogador3);
-    println!("A mão da máquina é: {}, {}, {}", mcarta1, mcarta2, mcarta3);
+    println!("A mão da máquina é: {}, {}, {}", carta_maquina1, carta_maquina2, carta_maquina3);
 
     let mut jjogada1 = String::new();
     let mut cjjogada1 = String::new();
@@ -702,8 +825,20 @@ fn main() {
 
     //Jogada da máquina
 
-    let mut mjogada1 = rng.gen_range(1..=3);
+    let mut mjogada1 = 0;
     let mut cmjogada1 = String::new();
+
+    /*<Sistema para a máquina jogar a carta mais alta dela -> Rodada 1>*/
+    if mcarta1 >= mcarta2 && mcarta1 >= mcarta3{
+        mjogada1 += 1;
+    }
+    if mcarta2 >= mcarta1 && mcarta2 >= mcarta3{
+        mjogada1 += 2;
+    }
+    if mcarta3 >= mcarta1 && mcarta3 >= mcarta2{
+        mjogada1 += 3;
+    }
+    /*</>*/
 
     let mescolha1 = mjogada1.clone();
 
@@ -871,7 +1006,16 @@ fn main() {
     let mut cmjogada2 = String::new();
 
     if mescolha1 == 1{
-        mjogada2 = rng.gen_range(2..=3);
+        
+        /*<Sistema para a máquina jogar a carta mais alta dela -> Rodada 2>*/
+        if mcarta2 >= mcarta3{
+            mjogada2 += 2;
+        }
+        if mcarta3 >= mcarta2{
+            mjogada2 += 3;
+        }
+        /*</>*/
+        
 
         if mjogada2 == 2{
             mjogada2 = mcarta2;
@@ -889,7 +1033,15 @@ fn main() {
     }
 
     if mescolha1 == 2{
-       mjogada2 = if rng.gen_bool(0.5) { 1 } else { 3 }; // Gera 1 ou 3 
+        /*<Sistema para a máquina jogar a carta mais alta dela -> Rodada 2>*/
+        if mcarta1 >= mcarta3{
+            mjogada2 += 1;
+        }
+        if mcarta3 >= mcarta1{
+            mjogada2 += 3;
+        }
+        /*</>*/
+        
 
         if mjogada2 == 1{
             mjogada2 = mcarta1;
@@ -908,7 +1060,16 @@ fn main() {
     }
 
     if mescolha1 == 3{
-        mjogada2 = rng.gen_range(1..=2);
+        /*<Sistema para a máquina jogar a carta mais alta dela -> Rodada 2>*/
+        if mcarta1 >= mcarta2{
+            mjogada2 += 1;
+        }
+        if mcarta2 >= mcarta1{
+            mjogada2 += 2;
+        }
+        /*</>*/
+        
+        
 
         if mjogada2 == 1{
             mjogada2 = mcarta1;
