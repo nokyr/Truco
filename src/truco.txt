@@ -27,3 +27,6 @@
 //ao inves de mostrar os numeros mostrar as cartas que o numero representam
 
 
+tirar o que mostra as cartas da maquina e subir os pontos para ganhar de 3 para 12 e colocar para fala quem ganhou o jogo
+
+terminar sistema de truco, o sistema vai ter 3, 6, 9
