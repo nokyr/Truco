@@ -1,7 +1,0 @@
-se o sistema de pedir truco for colocado, colocar o sistema de truco no README do github
-
-depois de pronto limpar os arquivos do src deixando só os arquivos que o jogo precisa pra funcionar
-
-arrumar um jeito de fazer um loop repetindo as rodadas
-
-colocar os pontos no final da rodada para partir para a proxima rodada

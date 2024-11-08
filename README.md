@@ -13,3 +13,4 @@
 
 <p>Abaixo das manilhas tem outras cartas, sendo todas mais fracas que as maninhas, sendo a mais forte o 3 e a mais fraca sendo o 4 (o 4 sem ser do naipe de paus).</p>
 <img src="img/cartas.png">
+
